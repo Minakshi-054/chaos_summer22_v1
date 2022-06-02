@@ -1,0 +1,50 @@
+This is how you train
+CUDA_VISIBLE_DEVICES=3,4,5,6,7 python train.py 2 24 222 train
+
+firstargs python train.py secondargs thirdargs fourthargs fifthargs
+
+firstargs:
+CUDA_VISIBLE_DEVICES=3,4,5,6, -> explicitly mention what you want to use
+
+secondargs:
+how many gpus are you using across selected gpus
+
+thirdargs:
+if you say -1, you mean you wan tto train with everything you have else say 20 means use only 20 data points
+this should be used only for sanity check
+
+fourthargs:
+number of epochs,
+if thirdargs is -1, then you are using only 2 epochs
+
+fifthargs:
+specify if you are trainng or testing, train, test
+
+
+
+HOW TO USE TENSORBOARD
+
+tensorboard --logdir=logs/ --host=0.0.0.0
+
+then portforward in termius and open your browser at 
+localhost:6006/
+
+
+
+Maintaining Version Control
+
+every time you update something you will see green label
+you need to push the changes
+#remember in future you might have bigger files you don't want to push
+#create .gitignore file and inlcude all the files that you don't want 
+#see details in internet
+
+git add --all
+git commit -m "message"
+git push -u origin main
+
+
+# note you can log the terminal output for future reference as well
+CUDA_VISIBLE_DEVICES=1,2 python train.py --version_data 0 --version_model 0 --version_catalog 0 --num_gpu 2 --train_batch_size 128 --test_batch_size 128 --mode train --sanity_epoch 2 | tee temp/history.txt
+
+!!warninng above is for sanity check only
